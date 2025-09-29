@@ -1,11 +1,12 @@
 import ScrollUp from "@/components/Common/ScrollUp";
 import { FAQ } from "@/components/FAQ";
 import Hero from "@/components/Hero";
+import { Pictures } from "@/components/Pictures";
 import Restaurants from "@/components/Restaurants";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
+  title: "Restuache | Main Page",
   description: "This is Home for Startup Nextjs Template",
   // other metadata
 };

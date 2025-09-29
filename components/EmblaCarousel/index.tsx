@@ -19,7 +19,7 @@ const EmblaCarousel = () => {
   ]);
 
   return (
-    <div className="embla border-4 border-white p-4" ref={emblaRef}>
+    <div className="embla border-4 border-[#03081F] p-4 mx-[100px]" ref={emblaRef}>
       <div className="embla__container">
         {images.map((image, index) => (
           <div key={index} className="embla__slide px-4">
@@ -28,7 +28,7 @@ const EmblaCarousel = () => {
               alt="meals"
               width={1350}
               height={1350}
-              className="h-[500px] object-cover"
+              className="h-[500px] w-full object-cover"
             />
           </div>
         ))}
