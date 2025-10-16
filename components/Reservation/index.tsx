@@ -100,7 +100,7 @@ const Reservation = ({
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -121,7 +121,7 @@ const Reservation = ({
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -143,7 +143,7 @@ const Reservation = ({
                       value={formData.phone}
                       onChange={handleInputChange}
                       required
-                      className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                       placeholder="+60 12-345 6789"
                     />
                   </div>
@@ -172,7 +172,7 @@ const Reservation = ({
                       onChange={handleInputChange}
                       min={today}
                       required
-                      className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     />
                   </div>
 
@@ -191,7 +191,7 @@ const Reservation = ({
                         value={formData.guests}
                         onChange={handleInputChange}
                         required
-                        className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                       >
                         {guestOptions.map((num) => (
                           <option key={num} value={num}>
@@ -218,7 +218,7 @@ const Reservation = ({
                       value={formData.time}
                       onChange={handleInputChange}
                       required
-                      className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-10 pr-3 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     >
                       <option value="">Select a time</option>
                       {timeSlots.map((time) => (
@@ -243,7 +243,7 @@ const Reservation = ({
                     value={formData.specialRequests}
                     onChange={handleInputChange}
                     rows={3}
-                    className="w-full resize-none rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full resize-none rounded-md border border-gray-300 px-3 py-2 focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     placeholder="Any dietary restrictions, special occasions, or seating preferences..."
                   />
                 </div>

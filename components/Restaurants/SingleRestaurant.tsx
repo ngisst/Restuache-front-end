@@ -10,7 +10,7 @@ const SingleRestaurant = ({ restaurant }: { restaurant: Restaurants }) => {
         className="wow fadeInUp group relative overflow-hidden rounded-lg bg-white shadow-one duration-300 hover:shadow-two dark:bg-dark dark:hover:shadow-gray-dark"
         data-wow-delay=".1s"
       >
-        <Link href={link} className="relative block aspect-[37/22] w-full">
+        <Link href={link} className="relative block aspect-37/22 w-full">
           <Image src={image} alt="image" fill />
         </Link>
         <div className="p-6 sm:p-8 md:px-6 md:py-8 lg:p-8 xl:px-5 xl:py-8 2xl:p-8">

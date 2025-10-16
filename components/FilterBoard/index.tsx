@@ -71,7 +71,7 @@ const FilterBoard = () => {
   );
 
   return (
-    <div className="w-full mb-12 bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-2xl shadow-lg border border-gray-200">
+    <div className="w-full mb-12 bg-linear-to-r from-gray-50 to-gray-100 p-6 rounded-2xl shadow-lg border border-gray-200">
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         
         {/* Food Type Filter */}
@@ -120,7 +120,7 @@ const FilterBoard = () => {
           </div>
           <div className="flex flex-col gap-2">
             {deliveryOptions.map((option) => (
-              <div key={option.value} className="transform transition-transform duration-200 hover:translate-y-[-1px]">
+              <div key={option.value} className="transform transition-transform duration-200 hover:-translate-y-px">
                 <DeliveryButton
                   option={option}
                   isSelected={deliveryFilter === option.value}

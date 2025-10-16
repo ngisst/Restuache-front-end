@@ -1,21 +1,28 @@
-'use client'
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   const popularSearches = [
-    'nature', 'business', 'technology', 'food', 'travel', 
-    'people', 'abstract', 'architecture', 'animals'
+    "nature",
+    "business",
+    "technology",
+    "food",
+    "travel",
+    "people",
+    "abstract",
+    "architecture",
+    "animals",
   ];
 
   const handleSearch = (e) => {
     if (e) e.preventDefault();
     if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
+      console.log("Searching for:", searchQuery);
     }
   };
 
@@ -24,14 +31,16 @@ export default function SearchInput() {
   };
 
   return (
-    <div className="w-full mx-auto py-6">
+    <div className="mx-auto w-full py-6">
       {/* Search Input */}
       <div className="relative mb-6">
         <div className="relative">
-          <div className={`relative flex items-center bg-white rounded-lg shadow-lg transition-all duration-200 ${
-            isFocused ? 'ring-2 ring-[#15616d] shadow-xl' : 'hover:shadow-xl'
-          }`}>
-            <CiSearch className="absolute left-4 w-5 h-5 text-gray-400" />
+          <div
+            className={`relative flex items-center rounded-lg bg-white shadow-lg transition-all duration-200 ${
+              isFocused ? "shadow-xl ring-2 ring-[#15616d]" : "hover:shadow-xl"
+            }`}
+          >
+            <CiSearch className="absolute left-4 h-5 w-5 text-gray-400" />
             <input
               type="text"
               value={searchQuery}
@@ -39,16 +48,16 @@ export default function SearchInput() {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   handleSearch(e);
                 }
               }}
               placeholder="Search For Restaurants"
-              className="w-full pl-12 pr-4 py-4 text-lg text-gray-700 bg-transparent rounded-l-lg focus:outline-none placeholder-gray-400"
+              className="w-full rounded-l-lg bg-transparent py-4 pr-4 pl-12 text-lg text-gray-700 placeholder-gray-400 focus:outline-hidden"
             />
             <button
               onClick={handleSearch}
-              className="px-8 py-4 bg-[#15616d] hover:bg-green-700 text-white font-semibold rounded-r-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#15616d] focus:ring-offset-2"
+              className="rounded-r-lg bg-[#15616d] px-8 py-4 font-semibold text-white transition-colors duration-200 hover:bg-green-700 focus:ring-2 focus:ring-[#15616d] focus:ring-offset-2 focus:outline-hidden"
             >
               Search
             </button>
@@ -56,10 +65,10 @@ export default function SearchInput() {
         </div>
 
         {/* Search Suggestions Dropdown */}
-        {isFocused && searchQuery === '' && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+        {isFocused && searchQuery === "" && (
+          <div className="absolute top-full right-0 left-0 z-50 mt-2 rounded-lg border border-gray-200 bg-white shadow-lg">
             <div className="p-4">
-              <h3 className="text-sm font-semibold text-gray-500 mb-3 uppercase tracking-wide">
+              <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-500 uppercase">
                 Trending Searches
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -67,7 +76,7 @@ export default function SearchInput() {
                   <button
                     key={search}
                     onClick={() => handleSuggestionClick(search)}
-                    className="px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="rounded-full bg-gray-100 px-3 py-1.5 text-sm text-gray-700 transition-colors duration-150 hover:bg-gray-200 focus:ring-2 focus:ring-green-500 focus:outline-hidden"
                   >
                     {search}
                   </button>
@@ -80,10 +89,11 @@ export default function SearchInput() {
 
       {/* Demo Results Display */}
       {searchQuery && (
-        <div className="mt-8 p-4 bg-green-50 rounded-lg border border-green-200">
+        <div className="mt-8 rounded-lg border border-green-200 bg-green-50 p-4">
           <p className="text-green-800">
-            <span className="font-semibold">Demo:</span> You searched for "{searchQuery}". 
-            In your Next.js app, this would trigger your search logic!
+            <span className="font-semibold">Demo:</span> You searched for &quot;
+            {searchQuery}&quot;. In your Next.js app, this would trigger your
+            search logic!
           </p>
         </div>
       )}

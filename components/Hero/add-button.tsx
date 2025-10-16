@@ -34,14 +34,14 @@ export default function AddButton() {
           onMouseLeave={() => setIsHovered(false)}
           className={`
             relative overflow-hidden group
-            px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 
+            px-8 py-4 bg-linear-to-r from-green-500 to-green-600 
             hover:from-green-600 hover:to-green-700
             text-white font-semibold rounded-full
             shadow-lg hover:shadow-xl
             transform transition-all duration-300 ease-out
             ${isHovered ? 'scale-105 -translate-y-1' : 'scale-100'}
             ${isClicked ? 'scale-95' : ''}
-            focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50
+            focus:outline-hidden focus:ring-4 focus:ring-green-300 focus:ring-opacity-50
           `}
         >
           {/* Animated background ripple effect */}
@@ -83,7 +83,7 @@ export default function AddButton() {
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg
                   hover:bg-gray-50 transition-all duration-200
                   transform hover:scale-[1.02] hover:translate-x-1
-                  focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50
+                  focus:outline-hidden focus:ring-2 focus:ring-green-300 focus:ring-opacity-50
                 `}
                 style={{
                   animationDelay: `${index * 100}ms`

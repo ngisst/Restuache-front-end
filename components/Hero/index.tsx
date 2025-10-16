@@ -13,7 +13,7 @@ const Hero = () => {
           <div className="absolute left-0 top-0 h-full w-full bg-black/50" />
           <Image
             src="/images/hero/hero.jpg"
-            className="h-[100vh] w-full object-cover"
+            className="h-screen w-full object-cover"
             alt="hero image"
             width={1000}
             height={600}
