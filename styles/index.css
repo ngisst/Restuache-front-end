@@ -309,7 +309,9 @@ layer(base);
   background-color: #344054;
 }
 
-
+.text-primary {
+  @apply text-[#15616d];  
+}
 
 @layer utilities {
   /* For Remove Date Icon */

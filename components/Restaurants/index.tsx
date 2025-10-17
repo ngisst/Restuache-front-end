@@ -35,8 +35,8 @@ const Restaurants = () => {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center text-[#FC8A06] ">
-          <button className="border-2 border-[#FC8A06] px-4 py-2 text-2xl rounded-lg">
+        <div className="mt-12 text-center text-primary ">
+          <button className="border-6 border-primary px-4 py-2 text-2xl rounded-lg">
             Show More
           </button>
         </div>
