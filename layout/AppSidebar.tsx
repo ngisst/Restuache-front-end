@@ -41,7 +41,11 @@ const navItems: NavItem[] = [
   {
     name: "Users",
     icon: <Users />,
-    path: "/admin/users",
+     subItems: [
+      { name: "Admins", path: "/admin/users/admins" },
+      { name: "Restaurants Owners", path: "/admin/users/restaurants-owners" },
+      { name: "Customers", path: "/admin/users/customers" },
+    ],
   },
 ];
 

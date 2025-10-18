@@ -1,5 +1,6 @@
 import Label from "@/components/form/Label";
 import DropzoneComponent from "@/components/form/form-elements/DropZone";
+import FileInput from "@/components/form/input/FileInput";
 import Input from "@/components/form/input/InputField";
 import Switch from "@/components/form/switch/Switch";
 import Button from "@/components/ui/button/Button";
@@ -22,6 +23,13 @@ const AddRestaurantModal = ({
     closeModal();
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log("Selected file:", file.name);
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={closeModal} className="m-4 max-w-[700px]">
       <div className="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 lg:p-11 dark:bg-gray-900">
@@ -40,6 +48,14 @@ const AddRestaurantModal = ({
                 <div className="col-span-2 lg:col-span-1">
                   <Label>Restaurant&apos;s Name</Label>
                   <Input type="text" defaultValue="Musharof" />
+                </div>
+
+                <div>
+                  <Label>Restaurant&apos;s Image</Label>
+                  <FileInput
+                    onChange={handleFileChange}
+                    className="custom-class"
+                  />
                 </div>
 
                 <div className="col-span-2 lg:col-span-1">

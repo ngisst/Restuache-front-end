@@ -9,64 +9,58 @@ import Badge from "../ui/badge/Badge";
 import Image from "next/image";
 import Switch from "../form/switch/Switch";
 import { useState } from "react";
+import { SlidersHorizontal } from "lucide-react";
 
 // Define the TypeScript interface for the table rows
 interface Product {
-  id: number; // Unique identifier for each product
-  name: string; // Product name
-  variants: string; // Number of variants (e.g., "1 Variant", "2 Variants")
-  category: string; // Category of the product
-  price: string; // Price of the product (as a string with currency symbol)
-  // status: string; // Status of the product
-  image: string; // URL or path to the product image
-  status: "Delivered" | "Pending" | "Canceled"; // Status of the product
+  id: number;
+  name: string;
+  variants: string;
+  restaurantName: string;
+  image: string;
+  status: "Online" | "Offline";
 }
 
 // Define the table data using the interface
 const tableData: Product[] = [
   {
     id: 1,
-    name: "MacBook Pro 13”",
+    name: "Mark",
     variants: "2 Variants",
-    category: "Laptop",
-    price: "$2399.00",
-    status: "Delivered",
+    restaurantName: "The Golden Fork",
+    status: "Online",
     image: "/images/users/user-01.jpg",
   },
   {
     id: 2,
-    name: "Apple Watch Ultra",
+    name: "John",
     variants: "1 Variant",
-    category: "Watch",
-    price: "$879.00",
-    status: "Pending",
+    restaurantName: "Sakura Dreams",
+    status: "Online",
     image: "/images/users/user-02.jpg",
   },
   {
     id: 3,
-    name: "iPhone 15 Pro Max",
+    name: "Lina",
     variants: "2 Variants",
-    category: "SmartPhone",
-    price: "$1869.00",
-    status: "Delivered",
+    restaurantName: "La Bella Notte",
+    status: "Offline",
     image: "/images/users/user-03.jpg",
   },
   {
     id: 4,
-    name: "iPad Pro 3rd Gen",
+    name: "Jane",
     variants: "2 Variants",
-    category: "Electronics",
-    price: "$1699.00",
-    status: "Canceled",
+    restaurantName: "The Crimson Plate",
+    status: "Online",
     image: "/images/users/user-04.jpg",
   },
   {
     id: 5,
-    name: "AirPods Pro 2nd Gen",
+    name: "Adam",
     variants: "1 Variant",
-    category: "Accessories",
-    price: "$240.00",
-    status: "Delivered",
+    restaurantName: "Ocean's Harvest",
+    status: "Offline",
     image: "/images/users/user-05.jpg",
   },
 ];
@@ -76,7 +70,7 @@ export default function UsersTable({ userType }: { userType: string }) {
 
   const handleSwitchChange = (checked: boolean) => {
     console.log("Switch is now:", checked ? "ON" : "OFF");
-    setLabel(checked ? "Enabled" : "Disabled")
+    setLabel(checked ? "Enabled" : "Disabled");
   };
 
   return (
@@ -90,41 +84,7 @@ export default function UsersTable({ userType }: { userType: string }) {
 
         <div className="flex items-center gap-3">
           <button className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
-            <svg
-              className="fill-white stroke-current dark:fill-gray-800"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.29004 5.90393H17.7067"
-                stroke=""
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M17.7075 14.0961H2.29085"
-                stroke=""
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12.0826 3.33331C13.5024 3.33331 14.6534 4.48431 14.6534 5.90414C14.6534 7.32398 13.5024 8.47498 12.0826 8.47498C10.6627 8.47498 9.51172 7.32398 9.51172 5.90415C9.51172 4.48432 10.6627 3.33331 12.0826 3.33331Z"
-                fill=""
-                stroke=""
-                strokeWidth="1.5"
-              />
-              <path
-                d="M7.91745 11.525C6.49762 11.525 5.34662 12.676 5.34662 14.0959C5.34661 15.5157 6.49762 16.6667 7.91745 16.6667C9.33728 16.6667 10.4883 15.5157 10.4883 14.0959C10.4883 12.676 9.33728 11.525 7.91745 11.525Z"
-                fill=""
-                stroke=""
-                strokeWidth="1.5"
-              />
-            </svg>
+            <SlidersHorizontal size={20} />
             Filter
           </button>
         </div>
@@ -138,19 +98,14 @@ export default function UsersTable({ userType }: { userType: string }) {
                 isHeader
                 className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
-                Products
+                Profile
               </TableCell>
+
               <TableCell
                 isHeader
                 className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
-                Category
-              </TableCell>
-              <TableCell
-                isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
-              >
-                Price
+                Restaurant&apos;s Name
               </TableCell>
               <TableCell
                 isHeader
@@ -170,57 +125,49 @@ export default function UsersTable({ userType }: { userType: string }) {
           {/* Table Body */}
 
           <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
-            {tableData.map((product) => (
-              <TableRow key={product.id} className="">
-                <TableCell className="py-3">
+            {tableData.map((user) => (
+              <TableRow
+                key={user.id}
+                className="cursor-pointer hover:bg-gray-700"
+              >
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className="h-[50px] w-[50px] overflow-hidden rounded-md">
                       <Image
                         width={50}
                         height={50}
-                        src={product.image}
+                        src={user.image}
                         className="h-[50px] w-[50px]"
-                        alt={product.name}
+                        alt={user.name}
                       />
                     </div>
                     <div>
                       <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                        {product.name}
+                        {user.name}
                       </p>
                       <span className="text-theme-xs text-gray-500 dark:text-gray-400">
-                        {product.variants}
+                        {user.variants}
                       </span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
-                  {product.price}
-                </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
-                  {product.category}
+                  {user.restaurantName}
                 </TableCell>
                 <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
                   <Badge
                     size="sm"
-                    color={
-                      product.status === "Delivered"
-                        ? "success"
-                        : product.status === "Pending"
-                        ? "warning"
-                        : "error"
-                    }
+                    color={user.status === "Online" ? "success" : "warning"}
                   >
-                    {product.status}
+                    {user.status}
                   </Badge>
                 </TableCell>
                 <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
-                  <div className="flex gap-12">
-                    <Switch
-                      label={label}
-                      defaultChecked={true}
-                      onChange={handleSwitchChange}
-                    />
-                  </div>
+                  <Switch
+                    label=''
+                    defaultChecked={true}
+                    onChange={handleSwitchChange}
+                  />
                 </TableCell>
               </TableRow>
             ))}

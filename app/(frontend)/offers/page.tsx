@@ -99,7 +99,7 @@ export default function OffersPage() {
           Hot Offers 🔥
         </h1>
         <p className="text-lg text-gray-300 md:text-xl">
-          Unbeatable deals that'll make your taste buds sing
+          Unbeatable deals that will make your taste buds sing
         </p>
       </div>
 

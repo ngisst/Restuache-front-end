@@ -9,12 +9,6 @@ export default function UsersPage() {
       <div className="col-span-12">
         <UsersTable userType={'Admins'} />
       </div>
-      <div className="col-span-12">
-        <UsersTable userType={'Restaurant Owners'}/>
-      </div>
-      <div className="col-span-12">
-        <UsersTable userType={'Customers'}/>
-      </div>
     </div>
   );
 }
