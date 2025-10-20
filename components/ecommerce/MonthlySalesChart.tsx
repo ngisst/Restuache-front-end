@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import Image from "next/image";
 import { EllipsisVertical } from "lucide-react";
 
 // Dynamically import the ReactApexChart component

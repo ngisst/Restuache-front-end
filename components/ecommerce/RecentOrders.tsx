@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -9,6 +11,10 @@ import Badge from "../ui/badge/Badge";
 import Image from "next/image";
 import { Pencil, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/useModal";
+import { useState } from "react";
+import EditOrderModal from "../Modals/orders/edit";
 
 // Define the TypeScript interface for the table rows
 interface Orders {
@@ -27,25 +33,25 @@ const tableData: Orders[] = [
     id: 1,
     orderImage: "/images/restaurants/restaurant-2.jpg",
     restaurantName: "Bella Italia",
-    orderNumber: "No. 1571",
+    orderNumber: "1571",
     customerName: "John Smith",
     destinationAddress: "123 Oak Street, Boston, MA 02101",
     status: "pending",
   },
   {
     id: 2,
-    orderImage: "/images/restaurants/restaurant-2.jpg",
+    orderImage: "/images/restaurants/restaurant-3.jpg",
     restaurantName: "Dragon Palace",
-    orderNumber: "No. 1421",
+    orderNumber: "1421",
     customerName: "Sarah Chen",
     destinationAddress: "456 Maple Avenue, Seattle, WA 98101",
     status: "Delivered",
   },
   {
     id: 3,
-    orderImage: "/images/restaurants/restaurant-2.jpg",
+    orderImage: "/images/restaurants/restaurant-1.jpg",
     restaurantName: "The Burger Joint",
-    orderNumber: "No. 5471",
+    orderNumber: "5471",
     customerName: "Michael Johnson",
     destinationAddress: "Take Away",
     status: "pending",
@@ -54,16 +60,16 @@ const tableData: Orders[] = [
     id: 4,
     orderImage: "/images/restaurants/restaurant-2.jpg",
     restaurantName: "Spice Route",
-    orderNumber: "No. 3114",
+    orderNumber: "3114",
     customerName: "Priya Patel",
     destinationAddress: "321 Elm Street, San Francisco, CA 94102",
     status: "Delivered",
   },
   {
     id: 5,
-    orderImage: "/images/restaurants/restaurant-2.jpg",
+    orderImage: "/images/restaurants/restaurant-3.jpg",
     restaurantName: "Taco Fiesta",
-    orderNumber: "No. 1244",
+    orderNumber: "1244",
     customerName: "Carlos Rodriguez",
     destinationAddress: "Take Away",
     status: "pending",
@@ -71,6 +77,15 @@ const tableData: Orders[] = [
 ];
 
 export default function RecentOrders() {
+  const router = useRouter();
+  const { isOpen, openModal, closeModal } = useModal();
+  const [orderNumber, setOrderNumber] = useState(null);
+
+  const handleRowClick = (orderId: any) => {
+    // Navigate to the detail page (adjust the path as needed)
+    router.push(`/admin/orders/${orderId}`);
+  };
+
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pt-4 pb-3 sm:px-6 dark:border-gray-800 dark:bg-white/[0.03]">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -80,11 +95,7 @@ export default function RecentOrders() {
           </h3>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
-            <SlidersHorizontal size={20} />
-            Filter
-          </button>
+        <div>
           <Link href="/admin/orders">
             <button className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
               See all
@@ -134,8 +145,12 @@ export default function RecentOrders() {
 
           <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
             {tableData.map((order) => (
-              <TableRow key={order.id} className="">
-                <TableCell className="py-3">
+              <TableRow
+                className="cursor-pointer hover:bg-gray-700"
+                key={order.id}
+                onClick={() => handleRowClick(order.orderNumber)}
+              >
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className="h-[50px] w-[50px] overflow-hidden rounded-md">
                       <Image
@@ -148,7 +163,7 @@ export default function RecentOrders() {
                     </div>
                     <div>
                       <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                        {order.orderNumber}
+                        No. {order.orderNumber}
                       </p>
                       <span className="text-theme-xs text-gray-500 dark:text-gray-400">
                         {order.restaurantName}
@@ -178,7 +193,14 @@ export default function RecentOrders() {
                 </TableCell>
                 <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
                   <div className="flex gap-12">
-                    <Pencil className="cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" />
+                    <Pencil
+                      className="cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal();
+                        setOrderNumber(order.orderNumber);
+                      }}
+                    />
                   </div>
                 </TableCell>
               </TableRow>
@@ -186,6 +208,11 @@ export default function RecentOrders() {
           </TableBody>
         </Table>
       </div>
+      <EditOrderModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        orderNumber={orderNumber}
+      />
     </div>
   );
 }

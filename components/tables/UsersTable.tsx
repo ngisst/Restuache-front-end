@@ -9,7 +9,10 @@ import Badge from "../ui/badge/Badge";
 import Image from "next/image";
 import Switch from "../form/switch/Switch";
 import { useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
+import UserDetailsModal from "../Modals/users/details";
+import { useModal } from "@/hooks/useModal";
+import UsersFilterItems from "./UsersFilterItems";
 
 // Define the TypeScript interface for the table rows
 interface Product {
@@ -66,11 +69,21 @@ const tableData: Product[] = [
 ];
 
 export default function UsersTable({ userType }: { userType: string }) {
+  const { isOpen, openModal, closeModal } = useModal();
+
   const [label, setLabel] = useState("Enabled");
+
+  const [user, setUser] = useState(null);
 
   const handleSwitchChange = (checked: boolean) => {
     console.log("Switch is now:", checked ? "ON" : "OFF");
     setLabel(checked ? "Enabled" : "Disabled");
+  };
+
+  const [openFilter, setOpenFilter] = useState(false);
+
+  const toggleOpenFilter = () => {
+    setOpenFilter(!openFilter);
   };
 
   return (
@@ -81,12 +94,32 @@ export default function UsersTable({ userType }: { userType: string }) {
             {userType}
           </h3>
         </div>
-
         <div className="flex items-center gap-3">
-          <button className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
-            <SlidersHorizontal size={20} />
-            Filter
-          </button>
+          <div className="relative">
+            <Search className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search By Name.."
+              className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden xl:w-[300px] dark:border-gray-800 dark:bg-white/[0.03] dark:text-white/90 dark:placeholder:text-white/30"
+            />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="animate-in slide-in-from-left-4 duration-700">
+              <button
+                onClick={toggleOpenFilter}
+                className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+              >
+                <SlidersHorizontal size={20} />
+                Filter
+              </button>
+            </div>
+            {openFilter && (
+              <div className="animate-in slide-in-from-left-4 duration-700">
+                <UsersFilterItems />
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="max-w-full overflow-x-auto">
@@ -129,6 +162,10 @@ export default function UsersTable({ userType }: { userType: string }) {
               <TableRow
                 key={user.id}
                 className="cursor-pointer hover:bg-gray-700"
+                onClick={() => {
+                  openModal();
+                  setUser(user);
+                }}
               >
                 <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
@@ -164,7 +201,7 @@ export default function UsersTable({ userType }: { userType: string }) {
                 </TableCell>
                 <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
                   <Switch
-                    label=''
+                    label=""
                     defaultChecked={true}
                     onChange={handleSwitchChange}
                   />
@@ -174,6 +211,7 @@ export default function UsersTable({ userType }: { userType: string }) {
           </TableBody>
         </Table>
       </div>
+      <UserDetailsModal isOpen={isOpen} closeModal={closeModal} user={user} />
     </div>
   );
 }

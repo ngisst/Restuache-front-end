@@ -13,16 +13,17 @@ const Restaurants = () => {
   return (
     <section
       id="restaurant"
-      className={`bg-[#FFFAF0E5] py-16 dark:bg-bg-color-dark md:py-20 ${
-        pathname == "/restaurants" ? "lg:py-40" : "lg:py-28"
-      }`}
+      className={`min-h-screen bg-gray-50 pt-28`}
     >
       <div className="container">
-        <SectionTitle
-          title="Restaurants"
-          paragraph="Over 100+ high quality restaurants can be found here."
-          center
-        />
+        <div className="px-4 pt-16 pb-12 text-center">
+          <h1 className="mb-4 text-5xl font-black text-gray-900 md:text-6xl">
+            Restaurants
+          </h1>
+          <p className="text-lg text-gray-600 md:text-xl">
+            Over 100+ high quality restaurants can be found here.
+          </p>
+        </div>
 
         <SearchInput />
 
@@ -35,8 +36,8 @@ const Restaurants = () => {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center text-primary ">
-          <button className="border-6 border-primary px-4 py-2 text-2xl rounded-lg">
+        <div className="text-primary mt-12 text-center">
+          <button className="border-primary rounded-lg border-6 px-4 py-2 text-2xl">
             Show More
           </button>
         </div>

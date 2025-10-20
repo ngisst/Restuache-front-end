@@ -46,6 +46,8 @@ const SingleRestaurantPage = () => {
               <Image
                 src={restaurant.image}
                 alt={restaurant.name}
+                width={600}
+                height={600}
                 className="h-96 w-full rounded-lg object-cover shadow-lg"
               />
             </div>

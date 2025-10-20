@@ -7,8 +7,7 @@ export default function ReservationsPage() {
     {
       id: 1,
       restaurantName: "The Golden Spoon",
-      restaurantImage:
-        "/images/restaurants/restaurant-2.jpg",
+      restaurantImage: "/images/restaurants/restaurant-2.jpg",
       date: "2024-10-15",
       time: "7:30 PM",
       guests: 4,
@@ -20,8 +19,7 @@ export default function ReservationsPage() {
     {
       id: 2,
       restaurantName: "Sakura Sushi Bar",
-      restaurantImage:
-        "/images/restaurants/restaurant-3.jpg",
+      restaurantImage: "/images/restaurants/restaurant-3.jpg",
       date: "2024-10-18",
       time: "6:00 PM",
       guests: 2,
@@ -33,8 +31,7 @@ export default function ReservationsPage() {
     {
       id: 3,
       restaurantName: "Bella Vista Italian",
-      restaurantImage:
-        "/images/restaurants/restaurant-2.jpg",
+      restaurantImage: "/images/restaurants/restaurant-2.jpg",
       date: "2024-10-22",
       time: "8:00 PM",
       guests: 6,
@@ -46,8 +43,7 @@ export default function ReservationsPage() {
     {
       id: 4,
       restaurantName: "Ocean Breeze Seafood",
-      restaurantImage:
-        "/images/restaurants/restaurant-1.jpg",
+      restaurantImage: "/images/restaurants/restaurant-1.jpg",
       date: "2024-10-25",
       time: "7:00 PM",
       guests: 3,
@@ -79,11 +75,11 @@ export default function ReservationsPage() {
     <div className="min-h-screen bg-gray-50 px-4 py-8 pt-28">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="mb-2 text-4xl font-bold text-gray-900">
-            My Reservations
+        <div className="px-4 pt-16 pb-12 text-center">
+          <h1 className="mb-4 text-5xl font-black text-gray-900 md:text-6xl">
+            Reservations
           </h1>
-          <p className="text-gray-600">
+          <p className="text-lg text-gray-600 md:text-xl">
             Manage and view your upcoming restaurant reservations
           </p>
         </div>

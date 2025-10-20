@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Flame, Clock, Users, Star } from "lucide-react";
+import Image from "next/image";
 
 export default function OffersPage() {
   const [selectedOffer, setSelectedOffer] = useState(null);
@@ -16,7 +17,7 @@ export default function OffersPage() {
       originalPrice: 24.99,
       discountedPrice: 14.99,
       discount: 40,
-      image: "🍔",
+      image: "/images/offers/meal-1.jpg",
       features: ["Flame-grilled burger", "Crispy fries", "Any soft drink"],
       timing: "Limited time",
     },
@@ -29,7 +30,7 @@ export default function OffersPage() {
       originalPrice: 49.99,
       discountedPrice: 34.99,
       discount: 30,
-      image: "🍽️",
+      image: "/images/offers/meal-1.jpg",
       features: ["Choose any 2 mains", "2 sides of choice", "Shared dessert"],
       timing: "Available daily",
     },
@@ -42,7 +43,7 @@ export default function OffersPage() {
       originalPrice: 32.99,
       discountedPrice: 17.99,
       discount: 45,
-      image: "🌙",
+      image: "/images/offers/meal-1.jpg",
       features: ["Any 2 items", "Free starter", "After 10 PM"],
       timing: "10 PM - 2 AM",
     },
@@ -55,7 +56,7 @@ export default function OffersPage() {
       originalPrice: 18.99,
       discountedPrice: 10.99,
       discount: 42,
-      image: "🥞",
+      image: "/images/offers/meal-1.jpg",
       features: ["Pancakes/Eggs", "Toast & butter", "Coffee/Juice"],
       timing: "6 AM - 11 AM",
     },
@@ -68,7 +69,7 @@ export default function OffersPage() {
       originalPrice: 28.99,
       discountedPrice: 18.99,
       discount: 34,
-      image: "🥗",
+      image: "/images/offers/meal-1.jpg",
       features: [
         "3 vegan options",
         "Premium smoothie",
@@ -85,20 +86,20 @@ export default function OffersPage() {
       originalPrice: 22.99,
       discountedPrice: 12.99,
       discount: 43,
-      image: "🍰",
+      image: "/images/offers/meal-1.jpg",
       features: ["4 dessert pieces", "Ice cream", "Whipped cream"],
       timing: "Evenings 5-10 PM",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black pt-28">
+    <div className="min-h-screen bg-gray-50 pt-28">
       {/* Header */}
       <div className="px-4 pt-16 pb-12 text-center">
-        <h1 className="mb-4 text-5xl font-black text-white md:text-6xl">
-          Hot Offers 🔥
+        <h1 className="mb-4 text-5xl font-black text-gray-900 md:text-6xl">
+          Hot Offers
         </h1>
-        <p className="text-lg text-gray-300 md:text-xl">
+        <p className="text-lg text-gray-600 md:text-xl">
           Unbeatable deals that will make your taste buds sing
         </p>
       </div>
@@ -113,7 +114,7 @@ export default function OffersPage() {
               onClick={() => setSelectedOffer(offer)}
             >
               {/* Card Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-500"></div>
 
               {/* Discount Badge */}
               <div
@@ -129,9 +130,14 @@ export default function OffersPage() {
 
               {/* Content */}
               <div className="relative z-10 flex h-full flex-col p-6">
-                {/* Emoji Image */}
-                <div className="mb-4 text-6xl transition-transform duration-300 group-hover:scale-110">
-                  {offer.image}
+                <div className="mb-4">
+                  <Image
+                    width={500}
+                    height={300}
+                    src={offer.image}
+                    alt={offer.title}
+                    className="h-full w-full rounded-sm object-cover transition-transform duration-300 hover:scale-105"
+                  />
                 </div>
 
                 {/* Title */}
@@ -169,7 +175,7 @@ export default function OffersPage() {
                     <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-3xl font-black text-transparent">
                       ${offer.discountedPrice}
                     </span>
-                    <span className="text-sm text-gray-500 line-through">
+                    <span className="text-sm text-gray-400 line-through">
                       ${offer.originalPrice}
                     </span>
                   </div>
@@ -193,14 +199,26 @@ export default function OffersPage() {
           onClick={() => setSelectedOffer(null)}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-gray-700 bg-gradient-to-br from-gray-800 to-gray-900 p-8 shadow-2xl"
+            className="w-full max-w-lg rounded-3xl border border-gray-700 bg-gradient-to-br from-gray-800 to-gray-900 p-8 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-4 text-5xl">{selectedOffer.image}</div>
-            <h2 className="mb-2 text-3xl font-black text-white">
-              {selectedOffer.title}
-            </h2>
-            <p className="mb-4 text-gray-300">{selectedOffer.description}</p>
+            <div className="flex gap-3 mb-2">
+              <Image
+                width={500}
+                height={300}
+                src={selectedOffer.image}
+                alt={selectedOffer.title}
+                className="h-[150px] w-[200px] rounded-sm object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div>
+                <h2 className="mb-2 text-3xl font-black text-white">
+                  {selectedOffer.title}
+                </h2>
+                <p className="mb-4 text-gray-300">
+                  {selectedOffer.description}
+                </p>
+              </div>
+            </div>
             <div className="mb-6 rounded-lg bg-gray-900/50 p-4">
               {selectedOffer.features.map((feature, idx) => (
                 <div

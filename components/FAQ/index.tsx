@@ -8,7 +8,7 @@ import SectionTitle from "../Common/SectionTitle";
 
 export function FAQ() {
   return (
-    <div className="bg-[#FFFAF0E5]">
+    <div className="bg-gray-50">
       <div className="container p-4">
          <SectionTitle
           title="FAQ"

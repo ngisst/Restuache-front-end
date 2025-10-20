@@ -7,7 +7,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden bg-[#FFFAF0E5] pb-4 pt-10"
+        className="relative z-10 overflow-hidden bg-gray-50 pb-4 pt-10"
       >
         <div className="relative mb-20">
           <div className="absolute left-0 top-0 h-full w-full bg-black/50" />
@@ -27,7 +27,7 @@ const Hero = () => {
           </div>
         </div>
         <EmblaCarousel />
-        <AddButton />
+        {/* <AddButton /> */}
       </section>
     </>
   );
