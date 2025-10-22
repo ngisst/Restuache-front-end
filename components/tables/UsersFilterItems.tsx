@@ -2,7 +2,6 @@ import { ChevronDown } from "lucide-react";
 import Select from "../form/Select";
 
 const UsersFilterItems = () => {
-
   const statusOptions = [
     { value: "online", label: "online" },
     { value: "offline", label: "offline" },
@@ -12,7 +11,7 @@ const UsersFilterItems = () => {
   };
   return (
     <div className={`flex gap-4 text-white`}>
-      <div className="relative">
+      <div className="relative w-full">
         <Select
           options={statusOptions}
           placeholder="Status"

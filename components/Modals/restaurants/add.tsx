@@ -9,9 +9,11 @@ import { Modal } from "@/components/ui/modal";
 const AddRestaurantModal = ({
   isOpen,
   closeModal,
+  restaurantIfno,
 }: {
   isOpen: boolean;
   closeModal: any;
+  restaurantIfno: any;
 }) => {
   const handleSwitchChange = (checked: boolean) => {
     console.log("Switch is now:", checked ? "ON" : "OFF");
@@ -47,7 +49,7 @@ const AddRestaurantModal = ({
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                 <div className="col-span-2 lg:col-span-1">
                   <Label>Restaurant&apos;s Name</Label>
-                  <Input type="text" defaultValue="Musharof" />
+                  <Input type="text" defaultValue={restaurantIfno?.name} />
                 </div>
 
                 <div>
@@ -60,12 +62,12 @@ const AddRestaurantModal = ({
 
                 <div className="col-span-2 lg:col-span-1">
                   <Label>Owner&apos;s Name</Label>
-                  <Input type="text" defaultValue="Chowdhury" />
+                  <Input type="text" defaultValue={restaurantIfno?.owner} />
                 </div>
 
                 <div className="col-span-2 lg:col-span-1">
                   <Label>City</Label>
-                  <Input type="text" defaultValue="Chicago" />
+                  <Input type="text" defaultValue={restaurantIfno?.city} />
                 </div>
 
                 <div className="col-span-2 lg:col-span-1">

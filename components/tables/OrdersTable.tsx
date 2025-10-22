@@ -16,12 +16,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import OrdersFilterItems from "./OrdersFilterItems";
 
-
 interface Orders {
-  id: number; 
-  orderImage: string; 
-  orderNumber: string; 
-  restaurantName: string; 
+  id: number;
+  orderImage: string;
+  orderNumber: string;
+  restaurantName: string;
   customerName: string;
   destinationAddress: string;
   status: string;
@@ -109,8 +108,8 @@ export default function OrdersTable() {
               className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden xl:w-[300px] dark:border-gray-800 dark:bg-white/[0.03] dark:text-white/90 dark:placeholder:text-white/30"
             />
           </div>
-          <div className="flex items-center gap-4">
-            <div className="animate-in slide-in-from-left-4 duration-700">
+          <div className="relative">
+            <div>
               <button
                 onClick={toggleOpenFilter}
                 className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
@@ -120,7 +119,7 @@ export default function OrdersTable() {
               </button>
             </div>
             {openFilter && (
-              <div className="animate-in slide-in-from-left-4 duration-700">
+              <div className="animate-in slide-in-from-top-4 absolute top-full left-1/2 z-10 mt-2 w-[120px] -translate-x-1/2 transform duration-700">
                 <OrdersFilterItems />
               </div>
             )}
@@ -134,31 +133,31 @@ export default function OrdersTable() {
             <TableRow>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Order
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Customer Name
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Address
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Status
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Action
               </TableCell>
@@ -186,22 +185,22 @@ export default function OrdersTable() {
                       />
                     </div>
                     <div>
-                      <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
+                      <p className="text-theme-sm font-medium whitespace-nowrap text-gray-800 dark:text-white/90">
                         No. {order.orderNumber}
                       </p>
-                      <span className="text-theme-xs text-gray-500 dark:text-gray-400">
+                      <span className="text-theme-xs whitespace-nowrap text-gray-500 dark:text-gray-400">
                         {order.restaurantName}
                       </span>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   {order.customerName}
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   {order.destinationAddress}
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <Badge
                     size="sm"
                     color={
@@ -215,7 +214,7 @@ export default function OrdersTable() {
                     {order.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <div className="flex gap-12">
                     <Pencil
                       className="cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"

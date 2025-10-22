@@ -88,7 +88,7 @@ export default function RecentOrders() {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pt-4 pb-3 sm:px-6 dark:border-gray-800 dark:bg-white/[0.03]">
-      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-4 flex gap-2 sm:flex-row items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
             Recent Orders
@@ -110,31 +110,31 @@ export default function RecentOrders() {
             <TableRow>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Order
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Customer Name
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Address
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Status
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Action
               </TableCell>
@@ -162,22 +162,22 @@ export default function RecentOrders() {
                       />
                     </div>
                     <div>
-                      <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
+                      <p className="text-theme-sm font-medium whitespace-nowrap text-gray-800 dark:text-white/90">
                         No. {order.orderNumber}
                       </p>
-                      <span className="text-theme-xs text-gray-500 dark:text-gray-400">
+                      <span className="text-theme-xs whitespace-nowrap text-gray-500 dark:text-gray-400">
                         {order.restaurantName}
                       </span>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   {order.customerName}
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   {order.destinationAddress}
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <Badge
                     size="sm"
                     color={
@@ -191,7 +191,7 @@ export default function RecentOrders() {
                     {order.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <div className="flex gap-12">
                     <Pencil
                       className="cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"

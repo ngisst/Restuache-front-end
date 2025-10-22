@@ -22,6 +22,7 @@ interface Product {
   restaurantName: string;
   image: string;
   status: "Online" | "Offline";
+  active: boolean
 }
 
 // Define the table data using the interface
@@ -33,6 +34,7 @@ const tableData: Product[] = [
     restaurantName: "The Golden Fork",
     status: "Online",
     image: "/images/users/user-01.jpg",
+    active: true
   },
   {
     id: 2,
@@ -41,6 +43,7 @@ const tableData: Product[] = [
     restaurantName: "Sakura Dreams",
     status: "Online",
     image: "/images/users/user-02.jpg",
+    active: false
   },
   {
     id: 3,
@@ -49,6 +52,7 @@ const tableData: Product[] = [
     restaurantName: "La Bella Notte",
     status: "Offline",
     image: "/images/users/user-03.jpg",
+    active: true
   },
   {
     id: 4,
@@ -57,6 +61,7 @@ const tableData: Product[] = [
     restaurantName: "The Crimson Plate",
     status: "Online",
     image: "/images/users/user-04.jpg",
+    active: true
   },
   {
     id: 5,
@@ -65,6 +70,7 @@ const tableData: Product[] = [
     restaurantName: "Ocean's Harvest",
     status: "Offline",
     image: "/images/users/user-05.jpg",
+    active: true
   },
 ];
 
@@ -103,9 +109,8 @@ export default function UsersTable({ userType }: { userType: string }) {
               className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden xl:w-[300px] dark:border-gray-800 dark:bg-white/[0.03] dark:text-white/90 dark:placeholder:text-white/30"
             />
           </div>
-
-          <div className="flex items-center gap-4">
-            <div className="animate-in slide-in-from-left-4 duration-700">
+          <div className="relative">
+            <div>
               <button
                 onClick={toggleOpenFilter}
                 className="text-theme-sm shadow-theme-xs inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
@@ -115,7 +120,7 @@ export default function UsersTable({ userType }: { userType: string }) {
               </button>
             </div>
             {openFilter && (
-              <div className="animate-in slide-in-from-left-4 duration-700">
+              <div className="animate-in slide-in-from-top-4 absolute top-full left-1/2 z-10 mt-2 w-[120px] -translate-x-1/2 transform duration-700">
                 <UsersFilterItems />
               </div>
             )}
@@ -129,26 +134,26 @@ export default function UsersTable({ userType }: { userType: string }) {
             <TableRow>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Profile
               </TableCell>
 
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Restaurant&apos;s Name
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Status
               </TableCell>
               <TableCell
                 isHeader
-                className="text-theme-xs py-3 text-start font-medium text-gray-500 dark:text-gray-400"
+                className="text-theme-xs p-3 text-start font-medium text-gray-500 dark:text-gray-400"
               >
                 Action
               </TableCell>
@@ -188,10 +193,10 @@ export default function UsersTable({ userType }: { userType: string }) {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   {user.restaurantName}
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <Badge
                     size="sm"
                     color={user.status === "Online" ? "success" : "warning"}
@@ -199,11 +204,13 @@ export default function UsersTable({ userType }: { userType: string }) {
                     {user.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-theme-sm py-3 text-gray-500 dark:text-gray-400">
+                <TableCell className="text-theme-sm p-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
                   <Switch
-                    label=""
-                    defaultChecked={true}
-                    onChange={handleSwitchChange}
+                    label={label}
+                    defaultChecked={user.active}
+                    onChange={(checked) => {
+                      handleSwitchChange(checked);
+                    }}
                   />
                 </TableCell>
               </TableRow>
